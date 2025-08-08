@@ -13,6 +13,7 @@ import RegisterPage from "./pages/Register";
 import VerifyPhonePage from "./pages/VerifyPhone";
 import ForgotPasswordPage from "./pages/ForgotPassword";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
+import { KanbanBoard } from "@/components/kanban/KanbanBoard";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/forgot" element={<ForgotPasswordPage />} />
           <Route path="/sectors" element={<ProtectedRoute><AppLayout><SectorsPage /></AppLayout></ProtectedRoute>} />
           <Route path="/boards/:boardId" element={<ProtectedRoute><AppLayout><BoardPage /></AppLayout></ProtectedRoute>} />
+          <Route path="/kanban-basic" element={<ProtectedRoute><AppLayout><KanbanBoard /></AppLayout></ProtectedRoute>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
