@@ -23,7 +23,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       </header>
       <div className="flex min-h-[calc(100vh-56px)] w-full">
         <AppSidebar />
-        <main className="flex-1 bg-[image:var(--gradient-muted)]">
+        <main className="flex-1 min-w-0 min-h-0 bg-[image:var(--gradient-muted)]">
           <div className="container py-6">{children}</div>
         </main>
       </div>

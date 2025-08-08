@@ -9,7 +9,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "@/components/ui/sidebar";
 
 const items = [
@@ -18,15 +17,15 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const { state } = useSidebar();
+  
   const location = useLocation();
   const currentPath = location.pathname;
 
   const isActivePath = (path: string) => currentPath === path;
 
   return (
-    <Sidebar collapsible={"icon"} className={state === "collapsed" ? "w-14" : "w-64"}>
-      <SidebarContent>
+    <Sidebar collapsible={"icon"}>
+      <SidebarContent className="scrollbar-stable">
         <SidebarGroup>
           <SidebarGroupLabel className="flex items-center gap-2">
             <LayoutGrid className="h-4 w-4" />
