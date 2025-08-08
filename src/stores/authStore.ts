@@ -1,11 +1,12 @@
 import { create } from "zustand";
 
-type User = { id: string; name: string; identifier: string };
+type User = { id: string; name: string; identifier: string; email?: string; avatarUrl?: string };
 
 type AuthState = {
   isAuthenticated: boolean;
   user: User | null;
   loginTest: (identifier: string, password: string) => boolean;
+  updateUser: (patch: Partial<User>) => void;
   logout: () => void;
 };
 
@@ -24,7 +25,7 @@ function loadSession(): Pick<AuthState, "isAuthenticated" | "user"> {
   }
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>((set, get) => ({
   ...loadSession(),
   loginTest: (identifier: string, password: string) => {
     // Credenciais de teste (mock)
@@ -34,13 +35,27 @@ export const useAuthStore = create<AuthState>((set) => ({
     ];
     const match = validCombos.find((c) => c.idf === identifier && c.pass === password);
     if (match) {
-      const user: User = { id: "u-demo", name: match.name, identifier };
+      const user: User = {
+        id: "u-demo",
+        name: match.name,
+        identifier,
+        email: identifier.includes("@") ? identifier : undefined,
+        avatarUrl: undefined,
+      };
       const next = { isAuthenticated: true, user };
       localStorage.setItem(LS_KEY, JSON.stringify(next));
       set(next);
       return true;
     }
     return false;
+  },
+  updateUser: (patch: Partial<User>) => {
+    const current = get();
+    if (!current.user) return;
+    const user = { ...current.user, ...patch } as User;
+    const next = { isAuthenticated: true, user };
+    localStorage.setItem(LS_KEY, JSON.stringify(next));
+    set(next);
   },
   logout: () => {
     localStorage.removeItem(LS_KEY);

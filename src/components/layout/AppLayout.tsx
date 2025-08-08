@@ -4,6 +4,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Bell } from "lucide-react";
+import { UserMenu } from "@/components/account/UserMenu";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
@@ -19,6 +20,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             <Bell className="h-4 w-4" />
             <span className="sr-only">Notificações</span>
           </Button>
+          <UserMenu />
         </div>
       </header>
       <div className="flex min-h-[calc(100vh-56px)] w-full">
