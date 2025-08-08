@@ -35,11 +35,11 @@ export function UserMenu() {
                 <AvatarImage src={user?.avatarUrl} alt={user?.name || "Usuário"} />
                 <AvatarFallback>{initials}</AvatarFallback>
               </Avatar>
-              <span className="max-w-[140px] truncate text-sm font-medium">{user?.name || "Usuário"}</span>
+              <span className="max-w-[160px] md:max-w-[220px] truncate text-sm font-medium">{user?.name || "Usuário"}</span>
             </div>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuContent align="end" className="z-50 w-56">
           <DropdownMenuLabel>
             <div className="flex items-center gap-2">
               <Avatar className="h-8 w-8">

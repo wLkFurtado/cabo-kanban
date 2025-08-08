@@ -9,18 +9,20 @@ import { UserMenu } from "@/components/account/UserMenu";
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
-      <header className="h-14 flex items-center border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-30 w-full">
-        <SidebarTrigger className="ml-2" />
-        <div className="ml-3 flex items-center gap-2">
-          <div className={cn("h-8 w-8 rounded-md shadow-[var(--shadow-soft)]", "bg-[image:var(--gradient-primary)]")} />
-          <span className="font-semibold">Kanban Prefeitura</span>
-        </div>
-        <div className="ml-auto mr-3 flex items-center gap-2">
-          <Button variant="soft" size="sm" aria-label="Notificações">
-            <Bell className="h-4 w-4" />
-            <span className="sr-only">Notificações</span>
-          </Button>
-          <UserMenu />
+      <header className="h-14 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 w-full">
+        <div className="container h-full flex items-center gap-3">
+          <SidebarTrigger />
+          <div className="flex items-center gap-2">
+            <div className={cn("h-8 w-8 rounded-md shadow-[var(--shadow-soft)]", "bg-[image:var(--gradient-primary)]")} />
+            <span className="font-semibold">Kanban Prefeitura</span>
+          </div>
+          <div className="ml-auto flex items-center gap-2">
+            <Button variant="soft" size="sm" aria-label="Notificações">
+              <Bell className="h-4 w-4" />
+              <span className="sr-only">Notificações</span>
+            </Button>
+            <UserMenu />
+          </div>
         </div>
       </header>
       <div className="flex min-h-[calc(100vh-56px)] w-full">
