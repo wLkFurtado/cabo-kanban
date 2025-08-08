@@ -3,10 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
+import { useAuthStore } from "@/stores/authStore";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const loginTest = useAuthStore((s) => s.loginTest);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    const ok = loginTest(identifier.trim(), password);
+    if (ok) {
+      toast({ title: "Bem-vindo!", description: "Login de teste realizado com sucesso." });
+      navigate("/boards/demo");
+    } else {
+      toast({ title: "Credenciais inválidas", description: "Use +5522999999999 / teste123 ou admin@prefeitura.test / teste123" });
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
@@ -25,7 +39,7 @@ const Index = () => {
               <label className="text-sm">Senha</label>
               <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <Button className="w-full" onClick={() => toast({ title: "Login simulado", description: "Integre o Supabase para autenticação real." })}>
+            <Button className="w-full" onClick={handleLogin}>
               Acessar
             </Button>
             <div className="text-center text-sm">

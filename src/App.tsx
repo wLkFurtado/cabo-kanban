@@ -12,7 +12,7 @@ import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import VerifyPhonePage from "./pages/VerifyPhone";
 import ForgotPasswordPage from "./pages/ForgotPassword";
-
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -27,8 +27,8 @@ const App = () => (
           <Route path="/register" element={<AppLayout><RegisterPage /></AppLayout>} />
           <Route path="/verify" element={<AppLayout><VerifyPhonePage /></AppLayout>} />
           <Route path="/forgot" element={<ForgotPasswordPage />} />
-          <Route path="/sectors" element={<AppLayout><SectorsPage /></AppLayout>} />
-          <Route path="/boards/:boardId" element={<AppLayout><BoardPage /></AppLayout>} />
+          <Route path="/sectors" element={<ProtectedRoute><AppLayout><SectorsPage /></AppLayout></ProtectedRoute>} />
+          <Route path="/boards/:boardId" element={<ProtectedRoute><AppLayout><BoardPage /></AppLayout></ProtectedRoute>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
